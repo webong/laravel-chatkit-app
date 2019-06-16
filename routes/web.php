@@ -12,16 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('chat');
+    return view('welcome');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/chat/{id}','ChatController@createRoom');
+Route::post('/chat/open','ChatController@openChatRoom')->name('openChat');
 
-Route::post('/chat/create','ChatController@createRoom');
+Route::get('/chat/{id}','ChatController@showChatRoom')->name('showChat');
 
-Route::post('/chat/message','ChatController@sendMessage');
+Route::post('/chat/{id}','ChatController@sendChatMessage')->name('sendMessage');
+
+
 

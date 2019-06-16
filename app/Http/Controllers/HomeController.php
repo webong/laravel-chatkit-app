@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::paginate();
+        $users = User::where('id', '!=', auth()->id())->paginate();
 
         return view('home')->with('users', $users);
     }

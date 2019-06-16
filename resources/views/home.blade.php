@@ -22,9 +22,10 @@
                             <tr>
                                 <td>{{ $user->name }}</td>
                                 <td>
-                                    <form id="logout-form" action="{{ url('/chat/create') }}" method="POST">
+                                    <form id="logout-form" action="{{ url('/chat/open') }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-primary"> Chat</button>
+                                        <input type="hidden" name="user" value="{{$user->id}}">
+                                        <button type="submit" class="btn btn-primary">Chat</button>
                                     </form>
                                 </td>
                             </tr>

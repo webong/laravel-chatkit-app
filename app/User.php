@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the chats of the user.
+     */
+    public function chats()
+    {
+        return $this->belongsToMany(Chat::class);
+    }
 }
