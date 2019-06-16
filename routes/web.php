@@ -19,11 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/chat/open','ChatController@openChatRoom')->name('openChat');
+Route::post('/chat/open','ChatController@openChat')->name('openChat');
 
-Route::get('/chat/{id}','ChatController@showChatRoom')->name('showChat');
+Route::get('/chat/{id}','ChatController@showChat')->name('showChat');
 
-Route::post('/chat/{id}','ChatController@sendChatMessage')->name('sendMessage');
+Route::post('/chat/{id}','ChatController@sendMessage')->name('sendMessage');
 
 
 
