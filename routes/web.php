@@ -18,3 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/chat/{id}','ChatController@createRoom');
+
+Route::post('/chat/create','ChatController@createRoom');
+
+Route::post('/chat/message','ChatController@sendMessage');
+

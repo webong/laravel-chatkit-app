@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Services\ChatKitService;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -32,17 +31,17 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/home';
 
-    protected $chatKitService;
+    protected $chatKit;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(ChatKitService $chatKitService)
+    public function __construct()
     {
         $this->middleware('guest');
-        $this->chatKitService = $chatKitService;
+        $this->chatKit = app('ChatKit');
     }
 
     /**
@@ -85,7 +84,7 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
         // Create User account on ChatKit
-        $this->chatKitService->createUser([
+        $this->chatKit->createUser([
             'id' => (string) $user->id,
             'name' => $user->name,
         ]);

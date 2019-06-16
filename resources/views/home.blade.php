@@ -9,12 +9,29 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
 
                     You are logged in!
+
+                    <table class="table table-striped">
+                        <tbody>
+                            @foreach ($users as $user)
+                            <tr>
+                                <td>{{ $user->name }}</td>
+                                <td>
+                                    <form id="logout-form" action="{{ url('/chat/create') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary"> Chat</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>
