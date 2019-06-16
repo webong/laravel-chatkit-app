@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Services\ChatKitService;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -83,7 +84,12 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
-        // dd($this->chatKitService->createUser($user));
-        // $this->chatKitService->chatkit->authenticate([ 'user_id' => 'ham' ]);
+        // Create User account on ChatKit
+        $this->chatKitService->createUser([
+            'id' => (string) $user->id,
+            'name' => $user->name,
+        ]);
+        // Redirect user to Home Page
+        return redirect($this->redirectPath());
     }
 }

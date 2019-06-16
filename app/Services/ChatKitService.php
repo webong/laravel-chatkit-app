@@ -15,9 +15,10 @@ class ChatKitService
         ]);
     }
 
-    // public function __call($method, $args)
-    // {
-    //     return $this->chatkit->$method($args);
-    // }
+    public function __call($method, $args)
+    {
+        list($data) = $args;
+        return $this->chatkit->$method($data);
+    }
 
 }
