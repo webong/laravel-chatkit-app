@@ -41,7 +41,6 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->chatKit = app('ChatKit');
     }
 
     /**
@@ -83,11 +82,14 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
+        $chatkit = app('ChatKit');
+
         // Create User account on ChatKit
-        $this->chatKit->createUser([
+        $chatkit->createUser([
             'id' => (string) $user->id,
             'name' => $user->name,
         ]);
+
         // Redirect user to Home Page
         return redirect($this->redirectPath());
     }

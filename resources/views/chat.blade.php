@@ -11,9 +11,11 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="card">
-                                    <div class="card-header">Chat with </div>
+                                    <div class="card-header">Chatting with {{ $user->name }} </div>
                                     <div class="card-body">
-                                        <dl id="messageList"></dl>
+                                        <dl id="messageList">
+
+                                        </dl>
                                         <hr>
                                         <form id="sendMessage" method="post">
                                             <div class='input-group'>
@@ -34,5 +36,9 @@
         </div>
     </div>
 </div>
+
+<script>
+ 
+</script>
 
 @endsection
