@@ -31,8 +31,6 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/home';
 
-    protected $chatKit;
-
     /**
      * Create a new controller instance.
      *
@@ -70,6 +68,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'chatkit_id' => strtolower(str_random(5)),
         ]);
     }
 
@@ -82,12 +81,18 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
+        $roomId = env('CHATKIT_GENERAL_ROOM_ID');
         $chatkit = app('ChatKit');
 
         // Create User account on ChatKit
         $chatkit->createUser([
-            'id' => (string) $user->id,
+            'id' =>  $user->chatkit_id,
             'name' => $user->name,
+        ]);
+
+        $chatkit->addUsersToRoom([
+            'room_id' => $roomId,
+            'user_ids' => [ $user->chatkit_id ],
         ]);
 
         // Redirect user to Home Page

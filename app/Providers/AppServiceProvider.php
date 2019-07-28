@@ -3,8 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Chatkit\Chatkit;
-
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -15,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind('ChatKit', function() {
-            return new Chatkit([
+            return new \Chatkit\Chatkit([
                 'instance_locator' => config('services.chatkit.locator'),
                 'key' => config('services.chatkit.secret'),
             ]);

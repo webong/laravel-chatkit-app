@@ -11,19 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ChatkitController@index');
 
-Auth::routes();
+Route::post('/', 'ChatkitController@join');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/chat', 'ChatkitController@chat')->name('chat');
 
-Route::post('/chat/open','ChatController@openChat')->name('openChat');
-
-Route::get('/chat/{id}','ChatController@showChat')->name('showChat');
-
-Route::post('/chat/{id}','ChatController@sendMessage')->name('sendMessage');
-
+Route::post('/logout', 'ChatkitController@logout')->name('logout');
 
 

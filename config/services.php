@@ -45,8 +45,8 @@ return [
     ],
 
     'chatkit' => [
-        'secret' => env('PUSHER_CHATKIT_SECRET_KEY'),
-        'locator' => env('PUSHER_CHATKIT_INSTANCE_LOCATOR'),
+        'secret' => env('CHATKIT_SECRET_KEY'),
+        'locator' => env('CHATKIT_INSTANCE_LOCATOR'),
     ],
 
 ];
